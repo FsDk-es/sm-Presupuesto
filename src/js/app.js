@@ -30,10 +30,16 @@ let cargarCabecero = ()=> {
     let presupuesto = totalIngresos() - totalEgresos();
     let porcentajeEgreso = totalEgresos()/totalEgresos();
     document.getElementById('presupuesto').innerHTML = formatoMoneda(presupuesto);
-    document.getElementById('porcentaje').innerHTML = porcentajeEgreso;
+    document.getElementById('porcentaje').innerHTML = formatoPorcentaje(porcentajeEgreso);
     document.getElementById('ingresos').innerHTML = formatoMoneda(totalIngresos());
     document.getElementById('egresos').innerHTML = formatoMoneda(totalEgresos());
 }
+//se agrega el formato de moneda.
 const formatoMoneda = (valor)=>{
 return valor.toLocaleString('es-ES',{style:'currency', currency:'EUR', minimumFractionDigits:2});
+}
+
+//se agrega el formato de porcentaje.
+const formatoPorcentaje = (valor)=>{
+    return valor.toLocaleString('es-ES', {style:'percent', minimumFractionDigits:2});
 }
