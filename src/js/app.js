@@ -91,7 +91,7 @@ const cargarEgresos = (valor)=>{
     for(let egreso of egresos){
         egresosHTML += crearEgresoHTML(egreso);
     }
-    console.log(`hola ${egresosHTML}`)
+    //console.log(`hola ${egresosHTML}`)
     document.getElementById('lista-egresos').innerHTML = egresosHTML;
 }
 
@@ -102,11 +102,18 @@ const crearEgresoHTML = (egreso)=>{
                         <div class="elemento_valor">- ${formatoMoneda(egreso.valor)}</div>
                         <div class="elemento_porcentaje">${formatoPorcentaje(egreso.valor/totalEgresos())}</div>
                         <button class="elemento_eliminar--btn">
-                            <ion-icon name="close-circle-outline" alt="Eliminar"></ion-icon>
+                            <ion-icon name="close-circle-outline" alt="Eliminar" onclick='eliminarEgreso(${egreso.id})'></ion-icon>
                         </button>
                     </div>
                 </div>
             </div>
             `;
             return egresoHTML;
+        }
+
+        let eliminarEgreso = (id)=> {
+            let indiceEliminar = egresos.findIndex(egreso => egreso.id === id);
+            egresos.splice(indiceEliminar, 1);
+            cargarCabecero();
+            cargarEgresos();
         }
