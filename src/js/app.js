@@ -1,15 +1,22 @@
 const ingresos = [
-    new Ingreso('Sueldo', 2000.000),
-    new Ingreso('Venta de Palet de Estrella 1L', 800)
+    new Ingreso('Sueldo', 200.000),
+    new Ingreso('Venta de Palet de Estrella 1L', 800),
+    new Ingreso('Venta de Pat de Estrella 1L', 800),
+    new Ingreso('Venta et de Estrella 1L', 800),
+    new Ingreso('Venta de Palet  Estrella 1L', 800),
 ];
 
 const egresos = [
     new Egreso('Renta', 900),
-    new Egreso('Atun', 2.50)
+    new Egreso('Atun', 2.50),
+    new Egreso('Atun', 2.50),
+    new Egreso('Atun', 2.50),
 ];
 
 let cargarApp = ()=> {
     cargarCabecero();
+    cargarIngresos();
+    cargarEgresos();
 }
 let totalIngresos = ()=> {
     let totalIngreso = 0;
@@ -51,3 +58,46 @@ const cargarIngresos = (valor)=>{
     }
     document.getElementById('lista-ingresos').innerHTML = ingresosHTML;
 }
+
+const crearIngresoHTML = (ingreso)=>{
+    let ingresoHTML = `
+    <div class="elemento limpiarEstilos">
+    <div class="elmento_descripcion">${ingreso.descripcion}</div>
+    <div class="derecha limpiarEstilos">
+        <div class="elemento_valor">${formatoMoneda(ingreso.valor)}</div>
+        <div class="elemento_eliminar">
+            <button class="elemento_eliminar--btn">
+                <ion-icon name="close-circle-outline" alt="Eliminar"></ion-icon>
+            </button>
+        </div>
+    </div>
+</div>
+`;
+return ingresoHTML;
+}
+
+//se agrega funcion cargar egresos
+const cargarEgresos = (valor)=>{
+    let egresosHTML = '';
+    for(let egreso of egresos){
+        egresosHTML += crearEgresoHTML(egreso);
+    }
+    console.log(`hola ${egresosHTML}`)
+    document.getElementById('lista-egresos').innerHTML = egresosHTML;
+}
+
+const crearEgresoHTML = (egreso)=>{
+   let egresoHTML =  `<div class="elemento limpiarEstilos">
+                    <div class="elemento_descripcion">${egreso.descripcion}</div>
+                    <div class="derecha limpiarEstilos">
+                        <div class="elemento_valor">- ${formatoMoneda(egreso.valor)}</div>
+                        <div class="elemento_porcentaje">21%</div>
+                        <button class="elemento_eliminar--btn">
+                            <ion-icon name="close-circle-outline" alt="Eliminar"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            `;
+            return egresoHTML;
+        }
