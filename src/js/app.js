@@ -43,3 +43,11 @@ return valor.toLocaleString('es-ES',{style:'currency', currency:'EUR', minimumFr
 const formatoPorcentaje = (valor)=>{
     return valor.toLocaleString('es-ES', {style:'percent', minimumFractionDigits:2});
 }
+//se agrega funcion cargar ingresos
+const cargarIngresos = (valor)=>{
+    let ingresosHTML = '';
+    for(let ingreso of ingresos){
+        ingresosHTML += crearIngresoHTML(ingreso);
+    }
+    document.getElementById('lista-ingresos').innerHTML = ingresosHTML;
+}
