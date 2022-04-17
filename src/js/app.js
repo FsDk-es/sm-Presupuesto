@@ -2,8 +2,8 @@ const ingresos = [
     new Ingreso('Sueldo', 200.000),
     new Ingreso('Venta de Palet de Estrella 1L', 800),
     new Ingreso('Venta de Pat de Estrella 1L', 800),
-    new Ingreso('Venta et de Estrella 1L', 800),
-    new Ingreso('Venta de Palet  Estrella 1L', 800),
+  //  new Ingreso('Venta et de Estrella 1L', 800),
+   // new Ingreso('Venta de Palet  Estrella 1L', 800),
 ];
 
 const egresos = [
@@ -117,3 +117,33 @@ const crearEgresoHTML = (egreso)=>{
             cargarCabecero();
             cargarEgresos();
         }
+
+
+
+
+        let agregarDato = ()=> {
+          //  console.log('hola');
+            let formulario = document.forms['formulario'];
+            let tipo= formulario['tipo'];
+            let descripcion = formulario['descripcion']
+            let valor = formulario['valor']
+            // preguntar si los valores son nuevos
+            if(descripcion.value !== '' && valor.value !== ''){
+                if(tipo.value === 'ingreso'){
+                    //Agregamos 1 ingreso
+                   // ingresos.push( new Ingreso(descripcion.value, +valor.value));
+                   ingresos.push( new Ingreso(descripcion.value, +valor.value));        
+                   cargarCabecero();
+                   cargarIngresos();
+
+
+                }
+            else if(tipo.value === 'egreso') {
+                //eliminamos 1 ingresoo
+                egresos.push( new Egreso(descripcion.value, +valor.value));
+                cargarCabecero();
+                cargarEgresos();
+
+          }
+      }
+    }
